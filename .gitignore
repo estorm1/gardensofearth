@@ -24,6 +24,10 @@
 .DS_Store
 *.pem
 
+# local source media and editing projects
+/public/Source Images/
+/VideoProjects/
+
 # debug
 npm-debug.log*
 yarn-debug.log*
