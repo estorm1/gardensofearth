@@ -1,6 +1,6 @@
 # Gardens of Earth website
 
-Next.js 16.2 with React 19, TypeScript, Tailwind CSS, and an optional Three.js
+Next.js 16.4 with React 19, TypeScript, Tailwind CSS, and an optional Three.js
 network globe. The existing pages are `/`, `/research`, `/about`, and `/ges`.
 `/about#book` contains book information; checkout and paid downloads are pending.
 
@@ -20,6 +20,7 @@ installed Next.js documentation in `node_modules/next/dist/docs/`.
 
 ```sh
 npm run lint
+npm audit --omit=dev
 node --test scripts/network-geo.test.mjs
 npm run build
 npm run start -- --hostname 127.0.0.1 --port 3418

@@ -1,12 +1,20 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState, type RefObject } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore, type RefObject } from "react";
 import { cities, journeyCamera, visits, activeVisit } from "./network-geo";
 import { profiles } from "./network-profiles";
 import styles from "./network-journey.module.css";
 
 type Globe = Awaited<ReturnType<typeof import("./network-globe")["createNetworkGlobe"]>>;
+
+function subscribeToMotionPreference(callback: () => void) {
+  const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+  preference.addEventListener("change", callback);
+  return () => preference.removeEventListener("change", callback);
+}
+const prefersReducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const serverMotionPreference = () => false;
 
 function Profile({index}:{index:number}) {
   const profile=profiles[index];
@@ -28,6 +36,8 @@ export default function NetworkJourney({ sectionRef, progress }: { sectionRef: R
   const [status,setStatus]=useState<"loading"|"ready"|"static">("loading");
   const [attempt,setAttempt]=useState(0);
   const [failed,setFailed]=useState(false);
+  const reducedMotion = useSyncExternalStore(subscribeToMotionPreference, prefersReducedMotion, serverMotionPreference);
+  const displayStatus = reducedMotion ? "static" : status;
   const latest=useRef(progress);
   useEffect(()=>{latest.current=progress;engine.current?.render(progress);},[progress]);
 
@@ -57,7 +67,6 @@ export default function NetworkJourney({ sectionRef, progress }: { sectionRef: R
     };
     const observer=new IntersectionObserver(([entry])=>{if(entry.isIntersecting)void start();},{rootMargin:"800px"});
     observer.observe(element);
-    if(reduced.matches)setStatus("static");
     reduced.addEventListener("change",preference);
     return ()=>{cancelled=true;observer.disconnect();reduced.removeEventListener("change",preference);engine.current?.dispose();engine.current=null;};
   },[attempt]);
@@ -70,17 +79,17 @@ export default function NetworkJourney({ sectionRef, progress }: { sectionRef: R
     window.scrollTo({top:section.getBoundingClientRect().top+window.scrollY+(section.offsetHeight-window.innerHeight)*p,behavior:"smooth"});
   };
   return (
-    <section ref={sectionRef} id="news" className={`${styles.section} ${status==="static"?styles.static:""}`} aria-label="Network dispatch: six cities, many climates">
+    <section ref={sectionRef} id="news" className={`${styles.section} ${displayStatus==="static"?styles.static:""}`} aria-label="Network dispatch: six cities, many climates">
       <div className={styles.sticky}>
-        <div ref={host} className={styles.globe} style={{opacity:status==="ready"?1:0}} />
-        {status==="loading" && <div className={styles.loading}><Image src="/maps/earth.jpg" alt="Satellite mosaic of Earth" fill sizes="100vw" /><span>Preparing the journey</span></div>}
+        <div ref={host} className={styles.globe} style={{opacity:displayStatus==="ready"?1:0}} />
+        {displayStatus==="loading" && <div className={styles.loading}><Image src="/maps/earth.jpg" alt="Satellite mosaic of Earth" fill sizes="100vw" /><span>Preparing the journey</span></div>}
         <header className={styles.header}>
           <p>Network dispatch</p><h2>One protocol,<br/>many climates.</h2>
           <div className={styles.coordinates}>{stop ? `${stop.lat.toFixed(2)}° N / ${Math.abs(stop.lon).toFixed(2)}° ${stop.lon<0?"W":"E"}` : "Local lessons. Planetary connections."}</div>
         </header>
         <div className={styles.north} aria-hidden="true">N<br/>↑</div>
-        {status==="static" && failed && <button className={styles.retry} onClick={()=>{setFailed(false);setStatus("loading");setAttempt(value=>value+1);}}>Retry globe</button>}
-        {status!=="static" && <>
+        {displayStatus==="static" && failed && <button className={styles.retry} onClick={()=>{setFailed(false);setStatus("loading");setAttempt(value=>value+1);}}>Retry globe</button>}
+        {displayStatus!=="static" && <>
           {visits.map(item=><article key={item.city.id} className={`${styles.dispatch} ${visit?.index===item.index?styles.visible:""}`} aria-hidden={visit?.index!==item.index} inert={visit?.index!==item.index}><Profile index={item.index}/></article>)}
           <div className={styles.orbitCaption} style={{opacity:visit?0:1}}>{progress<1/cities.length?"A shared planet. A local beginning.":"A different climate. A connected ambition."}</div>
           <nav className={styles.stops} aria-label="Network journey destinations">
