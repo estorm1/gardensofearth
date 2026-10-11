@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import LivingSystems from "./living-systems";
 import NetworkJourney from "./network-journey";
+import { primeScrollVideo } from "./hero-video";
 import {
   type RefObject,
   useCallback,
@@ -143,6 +144,10 @@ function HeroStory() {
   const progress = useSectionProgress(sectionRef);
   const [videoReady, setVideoReady] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [manualPlayback, setManualPlayback] = useState(false);
+  const [videoMessage, setVideoMessage] = useState("");
+  const manualPlaybackRef = useRef(false);
+  const syncVideoRef = useRef<() => void>(() => {});
   const playback = mapRange(progress, 0.12, 0.94);
   const heroLift = easeRange(progress, 0.20, 1) * 34;
   const menuOpacity = 1 - easeRange(progress, 0.16, 0.40);
@@ -151,7 +156,7 @@ function HeroStory() {
 
   const syncVideo = useCallback(() => {
     const video = videoRef.current;
-    if (!video || reducedMotion || !Number.isFinite(video.duration) || video.duration <= 0) return;
+    if (!video || reducedMotion || manualPlaybackRef.current || video.readyState < 1 || !Number.isFinite(video.duration) || video.duration <= 0) return;
 
     const targetTime = Math.min(playback * video.duration, Math.max(video.duration - 0.04, 0));
     if (Math.abs(video.currentTime - targetTime) > 0.04) {
@@ -159,23 +164,94 @@ function HeroStory() {
     }
   }, [playback, reducedMotion]);
 
-  useEffect(syncVideo, [syncVideo]);
+  useEffect(() => {
+    syncVideoRef.current = syncVideo;
+    syncVideo();
+  }, [syncVideo]);
 
   useEffect(() => {
-    // Cached media can finish loading before React attaches its media handlers.
-    const frame = requestAnimationFrame(() => {
-      if (videoRef.current && videoRef.current.readyState >= 2) setVideoReady(true);
-    });
-    return () => cancelAnimationFrame(frame);
+    const video = videoRef.current;
+    if (!video) return;
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let active = true;
+    let attempted = false;
+    const refresh = () => {
+      if (!active || preference.matches || document.visibilityState === "hidden") return;
+      if (video.readyState >= 2) setVideoReady(true);
+      syncVideoRef.current();
+      if (!attempted && video.readyState >= 1 && !manualPlaybackRef.current) {
+        attempted = true;
+        void primeScrollVideo(
+          video,
+          () => active && !preference.matches && !manualPlaybackRef.current,
+          () => syncVideoRef.current(),
+        );
+      }
+    };
+    // Account for cached events before hydration and delayed data after metadata.
+    const frame = requestAnimationFrame(refresh);
+    const events = ["loadedmetadata", "loadeddata", "canplay", "seeked"];
+    events.forEach((event) => video.addEventListener(event, refresh));
+    window.addEventListener("pageshow", refresh);
+    document.addEventListener("visibilitychange", refresh);
+    return () => {
+      active = false;
+      cancelAnimationFrame(frame);
+      events.forEach((event) => video.removeEventListener(event, refresh));
+      window.removeEventListener("pageshow", refresh);
+      document.removeEventListener("visibilitychange", refresh);
+      video.pause();
+    };
   }, []);
 
   useEffect(() => {
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => setReducedMotion(preference.matches);
+    const update = () => {
+      setReducedMotion(preference.matches);
+      if (preference.matches) {
+        manualPlaybackRef.current = false;
+        videoRef.current?.pause();
+        setManualPlayback(false);
+      }
+    };
     update();
     preference.addEventListener("change", update);
     return () => preference.removeEventListener("change", update);
   }, []);
+
+  const finishPlayback = () => {
+    manualPlaybackRef.current = false;
+    setManualPlayback(false);
+    syncVideoRef.current();
+  };
+
+  const togglePlayback = async () => {
+    const video = videoRef.current;
+    if (!video || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (manualPlaybackRef.current) {
+      video.pause();
+      finishPlayback();
+      return;
+    }
+    manualPlaybackRef.current = true;
+    setManualPlayback(true);
+    setVideoMessage("");
+    try {
+      if (video.error) video.load();
+      // Keep play() in the click/keyboard handler to retain user activation.
+      await video.play();
+      if (videoRef.current !== video) return;
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        video.pause();
+        return;
+      }
+      setVideoReady(true);
+    } catch {
+      if (videoRef.current !== video || !manualPlaybackRef.current) return;
+      finishPlayback();
+      setVideoMessage("The scene could not start. Please try Play scene again.");
+    }
+  };
 
   return (
     <section ref={sectionRef} id="home" tabIndex={-1} className="goe-hero" aria-label="Gardens of Earth">
@@ -191,8 +267,9 @@ function HeroStory() {
           playsInline
           preload="auto"
           aria-hidden="true"
-          onLoadedMetadata={syncVideo}
-          onLoadedData={() => { setVideoReady(true); syncVideo(); }}
+          onPause={finishPlayback}
+          onEnded={finishPlayback}
+          onError={() => { setVideoReady(false); setVideoMessage("The scene is unavailable. The still image remains visible."); }}
         >
           <source
             src="/videos/hero-mobile.mp4"
@@ -201,6 +278,12 @@ function HeroStory() {
           />
           <source src="/videos/hero-desktop.mp4" type="video/mp4" />
         </video>
+      </div>
+      <div className="goe-hero__playback" hidden={reducedMotion}>
+        <button type="button" onClick={togglePlayback} aria-pressed={manualPlayback}>
+          {manualPlayback ? "Pause scene" : "Play scene"}
+        </button>
+        <span role="status">{videoMessage}</span>
       </div>
       <MainNavigation opacity={reducedMotion ? 1 : menuOpacity} />
       <div
