@@ -131,7 +131,7 @@ function MainNavigation({ opacity = 1 }: { opacity?: number }) {
         <span className="goe-nav__separator" aria-hidden="true">
           |
         </span>
-        <a href="#contact">Contact</a>
+        <Link href="/contact">Contact</Link>
       </nav>
     </header>
   );
@@ -485,15 +485,9 @@ function ClosingSection() {
           <h3>Continue the conversation.</h3>
           <p>
             Research collaborations, concept development, and project conversations
-            are welcome through the Gardens of Earth repository.
+            are welcome through the Gardens of Earth contact page.
           </p>
-          <a
-            href="https://github.com/estorm1/gardensofearth"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Visit the project repository
-          </a>
+          <Link href="/contact">Open the contact page</Link>
         </div>
       </div>
     </section>

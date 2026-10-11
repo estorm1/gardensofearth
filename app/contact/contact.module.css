@@ -1,0 +1,28 @@
+.page { --accent: #246c58; --line: #d8e2dc; --muted: #52635c; min-height: 100vh; background: #f8fbf9; color: #21372e; }
+.content { width: min(760px, calc(100% - 96px)); margin: 0 auto; padding: 70px 0 90px; }
+.content h1 { font-size: clamp(36px, 5vw, 58px); font-weight: 800; line-height: 1.08; letter-spacing: -.035em; margin: 12px 0 22px; }
+.eyebrow { color: var(--accent); text-transform: uppercase; letter-spacing: .12em; font-size: 12px; font-weight: 750; }
+.lead { font-size: 20px; line-height: 1.65; color: var(--muted); }
+.formSection { margin-top: 44px; }
+.formSection h2, .privacy h2 { font-size: 22px; font-weight: 700; margin-bottom: 18px; }
+.formSection fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+.formSection label { display: block; font-weight: 650; margin: 22px 0 8px; }
+.formSection input, .formSection textarea { display: block; width: 100%; border: 1px solid #7d9186; border-radius: 7px; background: #fff; color: #21372e; font: inherit; font-size: 16px; padding: 12px; min-height: 48px; }
+.formSection textarea { resize: vertical; }
+.formSection input:disabled, .formSection textarea:disabled { background: #eef2ef; color: #52635c; }
+.formSection button { padding: 13px 24px; min-height: 48px; border-radius: 7px; border: 0; background: var(--accent); color: #fff; font-weight: 700; cursor: pointer; margin-top: 18px; }
+.formSection button:disabled { background: #65756c; cursor: not-allowed; }
+.formSection input:focus-visible, .formSection textarea:focus-visible, .formSection button:focus-visible, .skip:focus-visible { outline: 3px solid #b97118; outline-offset: 3px; }
+.formSection [aria-invalid="true"] { border: 2px solid #972d28; }
+.hint { color: var(--muted); font-size: 13px; margin: 8px 0; }
+.notice { padding: 16px 18px; border-left: 4px solid var(--accent); background: #e7f0ea; line-height: 1.6; margin: 18px 0; }
+.error { color: #972d28; font-size: 14px; margin-top: 6px; }
+.result { line-height: 1.6; margin-top: 18px; }
+.result:empty { margin: 0; }
+.privacy { border-top: 1px solid var(--line); margin-top: 44px; padding-top: 28px; color: var(--muted); font-size: 14px; line-height: 1.7; }
+.privacy p + p { margin-top: 14px; }
+.srOnly, .honeypot { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.skip { position: fixed; left: 20px; top: 12px; transform: translateY(-200%); padding: 12px 18px; background: #fff; color: var(--accent); z-index: 20; border-radius: 6px; }
+.skip:focus { transform: none; }
+@media (max-width: 800px) { .content { width: calc(100% - 64px); padding-top: 42px; } }
+@media (max-width: 520px) { .content { width: calc(100% - 40px); padding-top: 32px; } .lead { font-size: 18px; } .formSection { margin-top: 32px; } }

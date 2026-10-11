@@ -541,7 +541,7 @@ export default function ResearchPage() {
       <footer className={styles.pageFooter}>
         <Link href="/">Gardens of Earth</Link>
         <a href="#top">Back to top</a>
-        <Link href="/#contact">Contact</Link>
+        <Link href="/contact">Contact</Link>
       </footer>
     </div>
   );

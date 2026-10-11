@@ -317,7 +317,7 @@ export default function AboutPage() {
             <div className={styles.relatedLinks}>
               <Link href="/research">Explore the research</Link>
               <Link href="/ges">Gaia Earth Simulator</Link>
-              <Link href="/#contact">Continue the conversation</Link>
+              <Link href="/contact">Continue the conversation</Link>
             </div>
           </div>
         </section>

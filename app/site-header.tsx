@@ -8,14 +8,14 @@ const navigation = [
   { label: "News", href: "/#news" },
   { label: "About", href: "/about" },
   { label: "Book", href: "/about#book" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Contact", href: "/contact" },
 ] as const;
 
 export default function SiteHeader({
   currentPage,
   subtitle,
 }: {
-  currentPage: "Research" | "GES" | "About";
+  currentPage: "Research" | "GES" | "About" | "Contact";
   subtitle: string;
 }) {
   return (

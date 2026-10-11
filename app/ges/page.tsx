@@ -119,7 +119,7 @@ export default function GesPage() {
 
       <footer className={styles.footer}>
         <span>Gardens of Earth / Gaia Earth Simulator</span>
-        <Link href="/#contact">Contact</Link>
+        <Link href="/contact">Contact</Link>
       </footer>
     </div>
   );
