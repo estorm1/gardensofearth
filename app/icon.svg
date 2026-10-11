@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <title>Gardens of Earth</title>
+  <rect width="64" height="64" rx="14" fill="#246c58"/>
+  <path fill="#fff7e5" d="M47 20a21 21 0 1 0 2 26V30H31v8h10v5a13 13 0 1 1-1-18z"/>
+</svg>

@@ -108,7 +108,7 @@ function useSectionProgress(
 function MainNavigation({ opacity = 1 }: { opacity?: number }) {
   return (
     <header className="goe-nav" aria-label="Main menu" style={{ opacity }} inert={opacity < 0.05}>
-      <nav className="goe-nav__panel">
+      <nav className="goe-nav__panel" aria-label="Main menu">
         <a href="#home">Home</a>
         <span className="goe-nav__separator" aria-hidden="true">
           |
@@ -126,6 +126,8 @@ function MainNavigation({ opacity = 1 }: { opacity?: number }) {
           |
         </span>
         <Link href="/about">About</Link>
+        <span className="goe-nav__separator" aria-hidden="true">|</span>
+        <Link href="/about#book">Book</Link>
         <span className="goe-nav__separator" aria-hidden="true">
           |
         </span>
@@ -500,14 +502,17 @@ function ClosingSection() {
 
 export default function Home() {
   return (
-    <main className="goe-shell">
-      <HeroStory />
-      <TransitionStory />
-      <MobilityStory />
-      <RiverStory />
-      <FilmSection />
-      <MapStory />
-      <ClosingSection />
-    </main>
+    <>
+      <a className="goe-skip-link" href="#home-content">Skip to content</a>
+      <main id="home-content" className="goe-shell" tabIndex={-1}>
+        <HeroStory />
+        <TransitionStory />
+        <MobilityStory />
+        <RiverStory />
+        <FilmSection />
+        <MapStory />
+        <ClosingSection />
+      </main>
+    </>
   );
 }

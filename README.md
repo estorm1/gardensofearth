@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Gardens of Earth website
 
-## Getting Started
+Next.js 16.2 with React 19, TypeScript, Tailwind CSS, and an optional Three.js
+network globe. The existing pages are `/`, `/research`, `/about`, and `/ges`.
+`/about#book` contains book information; checkout and paid downloads are pending.
 
-First, run the development server:
+## Local development
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Use Node.js 24 to match the existing Vercel project. Install the lockfile versions:
+
+```sh
+npm ci
+npm run dev -- --hostname 127.0.0.1 --port 3417
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open <http://127.0.0.1:3417>. Read `AGENTS.md` before editing and consult the
+installed Next.js documentation in `node_modules/next/dist/docs/`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Verification and local production preview
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```sh
+npm run lint
+node --test scripts/network-geo.test.mjs
+npm run build
+npm run start -- --hostname 127.0.0.1 --port 3418
+```
 
-## Learn More
+Open <http://127.0.0.1:3418>. `next build` compiles TypeScript and prerenders the
+pages, `robots.txt`, and `sitemap.xml`. The existing `next/font/google` setup
+fetches Geist fonts during a clean build, so the build needs internet access.
+Check all pages on desktop and mobile, keyboard navigation, the Book anchor,
+and the reduced-motion/static alternatives before releasing.
 
-To learn more about Next.js, take a look at the following resources:
+## Website assets and publication
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The runtime uses the prepared assets in `public/images`, `public/videos`, and
+`public/maps`. Keep these with the website source when preparing a release.
+Image preparation scripts read local book artwork and are optional authoring
+tools; they are not part of the install or build workflow.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+`Gardens Of Earth Book`, `public/Source Images`, editing projects, and local
+review output are excluded from Git. Never place unpublished manuscripts,
+audiobooks, purchase credentials, or private delivery links in `public`.
 
-## Deploy on Vercel
+Metadata targets the intended canonical origin, <https://gardensofearth.com>.
+The existing host is Vercel, but the custom domain and TLS must be verified
+before launch. A Git push can trigger a deployment through the existing Git
+integration; local review does not require a push or deployment.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Before opening book sales, approve the formats and final files, prices,
+checkout provider, delivery/access method, and customer support contact.
+Google Drive delivery has not been finalized. Configure and verify that flow
+separately; the site currently contains no working purchase or download link.

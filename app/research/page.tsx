@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "../site-metadata";
 import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
@@ -16,11 +16,11 @@ import corridor from "../../public/images/research/hawthorne-gardena.webp";
 import cover from "../../public/images/research/book-cover.webp";
 import styles from "./research.module.css";
 
-export const metadata: Metadata = {
-  title: "Research | Gardens of Earth",
-  description:
-    "A synthesis of Eric Storm's Vascular Los Angeles and the Biourban Future: water, living terrain, mobility, canopy, civic life, and an evidence-led path to pilots.",
-};
+export const metadata = pageMetadata(
+  "Research | Gardens of Earth",
+  "A synthesis of Eric Storm's Vascular Los Angeles and the Biourban Future: water, living terrain, mobility, canopy, civic life, and an evidence-led path to pilots.",
+  "/research",
+);
 
 const contents = [
   { id: "vascular-city", title: "The vascular city" },
@@ -530,6 +530,7 @@ export default function ResearchPage() {
                 <h2>Gardens of Earth</h2>
                 <p className={styles.sourceSubtitle}>Vascular Los Angeles and the Biourban Future</p>
                 <p>Eric Storm / Volumes I & II / 56 chapters</p>
+                <Link className={styles.textLink} href="/about#book">Book and author information</Link>
                 <p>This page synthesizes the book&apos;s design and research agenda. Chapter references identify the underlying discussions. Illustrations are concept studies from the book, not photographs of completed projects, engineering approvals, or evidence of institutional participation.</p>
                 <p>The integrated system, proposed pilots, authority, and roadmap remain proposals. Existing precedents inform the questions; they do not validate the complete vision.</p>
               </div>

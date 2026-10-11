@@ -12,7 +12,7 @@ export const profiles = [
     mechanism: "LUSH landscape replacement and ABC Waters integrate greenery with development and waterways. Replacement requirements vary by location and development type.",
     evidence: "At Bishan-Ang Mo Kio Park, a concrete canal became a naturalized river within a public park: a built example of water and landscape working together.",
     label: "Built example", sources: [
-      {label:"URA / LUSH",url:"https://www.ura.gov.sg/-/media/Corporate/Resources/Publications/Books/UD-Guidebook-2-_Green_and_Liveable_City_2024.pdf"},
+      {label:"URA / LUSH",url:"https://www.ura.gov.sg/guidelines/development-control/development-control-handbooks/residential/flats-condominiums/greenery/"},
       {label:"PUB / ABC Waters",url:"https://www.pub.gov.sg/Public/Places-of-Interest/Our-Reservoirs-and-Waterways/Bishan-Ang-Mo-Kio-Park"},
     ],
   },
@@ -28,7 +28,7 @@ export const profiles = [
     image: "/images/network-copenhagen.webp", alt: "Illustrated rainwater plaza, brick buildings, bike lanes, and vegetated swales",
     mechanism: "The Cloudburst Management Plan combines parks, sunken streets, and temporary surface storage with underground drainage to manage extreme rainfall.",
     evidence: "A 100-year rainfall event is the planning standard, not a claim of immunity to flooding. Surface landscapes complement, rather than replace, pipes.",
-    label: "Design standard", sources: [{label:"City of Copenhagen / Plan",url:"https://international.kk.dk/sites/default/files/2021-09/Cloudburst%20Management%20plan%202010.pdf"}],
+    label: "Design standard", sources: [{label:"EEA / Copenhagen plan",url:"https://climate-adapt.eea.europa.eu/en/metadata/case-studies/the-economics-of-managing-heavy-rains-and-stormwater-in-copenhagen-2013-the-cloudburst-management-plan"}],
   },
   {
     title: "Wuhan & Shenzhen, China", subtitle: "Regional Sponge City Engineering",

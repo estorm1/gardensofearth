@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "../site-metadata";
 import Image from "next/image";
 import Link from "next/link";
 import transit from "../../public/images/about/preface-transit.webp";
@@ -7,11 +7,11 @@ import cover from "../../public/images/research/book-cover.webp";
 import SiteHeader from "../site-header";
 import styles from "./about.module.css";
 
-export const metadata: Metadata = {
-  title: "About | Gardens of Earth",
-  description:
-    "Eric Storm's Gardens of Earth: the origins of Vascular Los Angeles, a connected biourban vision, and a gradual, place-specific path toward living cities worldwide.",
-};
+export const metadata = pageMetadata(
+  "About | Gardens of Earth",
+  "Eric Storm's Gardens of Earth: the origins of Vascular Los Angeles, a connected biourban vision, and a gradual, place-specific path toward living cities worldwide.",
+  "/about",
+);
 
 const contents = [
   { label: "The vision", href: "#vision" },
@@ -282,11 +282,12 @@ export default function AboutPage() {
                 </p>
               </div>
             </div>
-            <aside className={styles.book} aria-label="The research book">
+            <aside id="book" className={styles.book} aria-label="The research book" tabIndex={-1}>
               <Image src={cover} alt="Gardens of Earth, Volume I, by Eric Storm." sizes="180px" placeholder="blur" />
               <p className={styles.eyebrow}>The research book</p>
               <h3>Vascular Los Angeles and the Biourban Future</h3>
               <p>Eric Storm / Volumes I & II</p>
+              <p className={styles.bookAvailability}>Purchase and download details will be announced here.</p>
               <Link className={styles.textLink} href="/research">Read the research synthesis</Link>
             </aside>
           </div>

@@ -28,6 +28,12 @@
 /public/Source Images/
 /VideoProjects/
 
+# private book production and local review artifacts
+/Gardens Of Earth Book/
+/output/
+/.playwright-cli/
+/.playwright/
+
 # debug
 npm-debug.log*
 yarn-debug.log*

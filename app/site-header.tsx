@@ -7,6 +7,7 @@ const navigation = [
   { label: "GES", href: "/ges" },
   { label: "News", href: "/#news" },
   { label: "About", href: "/about" },
+  { label: "Book", href: "/about#book" },
   { label: "Contact", href: "/#contact" },
 ] as const;
 

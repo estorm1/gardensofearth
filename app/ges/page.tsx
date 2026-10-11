@@ -1,15 +1,15 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "../site-metadata";
 import Image from "next/image";
 import Link from "next/link";
 import livingSystems from "../../public/images/living-systems.png";
 import SiteHeader from "../site-header";
 import styles from "./ges.module.css";
 
-export const metadata: Metadata = {
-  title: "Gaia Earth Simulator | Gardens of Earth",
-  description:
-    "Gaia Earth Simulator is in active development: an evolving digital environment for exploring connected living systems and possible urban futures, beginning with Los Angeles and the LA River.",
-};
+export const metadata = pageMetadata(
+  "Gaia Earth Simulator | Gardens of Earth",
+  "Gaia Earth Simulator is in active development: an evolving digital environment for exploring connected living systems and possible urban futures, beginning with Los Angeles and the LA River.",
+  "/ges",
+);
 
 export default function GesPage() {
   return (
