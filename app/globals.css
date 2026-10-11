@@ -123,6 +123,39 @@ select {
   display: none;
 }
 
+.goe-hero__playback {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 4;
+  max-width: min(20rem, calc(100% - 2rem));
+  color: #fff7e5;
+  font-size: 0.8rem;
+}
+
+.goe-hero__playback button {
+  min-height: 44px;
+  padding: 0.6rem 1rem;
+  border: 1px solid rgba(255, 247, 229, 0.7);
+  border-radius: 999px;
+  background: rgba(14, 35, 28, 0.9);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.goe-hero__playback button:focus-visible {
+  outline: 3px solid #fff7e5;
+  outline-offset: 4px;
+}
+
+.goe-hero__playback span:not(:empty) {
+  display: block;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background: #0e231c;
+}
+
 .goe-nav {
   position: absolute;
   top: 0;
@@ -1184,6 +1217,8 @@ select {
   .goe-hero__video {
     display: none;
   }
+
+  .goe-hero__playback { display: none; }
 
   .goe-hero__content {
     position: relative;
