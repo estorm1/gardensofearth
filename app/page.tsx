@@ -178,7 +178,7 @@ function HeroStory() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="home" className="goe-hero" aria-label="Gardens of Earth">
+    <section ref={sectionRef} id="home" tabIndex={-1} className="goe-hero" aria-label="Gardens of Earth">
       <div className="goe-hero__stage">
       <div className="goe-hero__media">
         <video
@@ -500,6 +500,24 @@ function ClosingSection() {
   );
 }
 
+function BottomNavigation() {
+  return (
+    <footer className="goe-bottom-nav">
+      <p className="goe-kicker">Continue exploring</p>
+      <nav className="goe-nav__panel goe-bottom-nav__panel" aria-label="Footer navigation">
+        <a href="#home">Home</a>
+        <Link href="/research">Research</Link>
+        <Link href="/ges">GES</Link>
+        <a href="#news">News</a>
+        <Link href="/about">About</Link>
+        <Link href="/about#book">Book</Link>
+        <a href="#contact">Contact</a>
+        <a className="goe-back-to-top" href="#home">Back to top <span aria-hidden="true">↑</span></a>
+      </nav>
+    </footer>
+  );
+}
+
 export default function Home() {
   return (
     <>
@@ -513,6 +531,7 @@ export default function Home() {
         <MapStory />
         <ClosingSection />
       </main>
+      <BottomNavigation />
     </>
   );
 }
