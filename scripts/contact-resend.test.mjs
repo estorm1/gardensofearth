@@ -92,7 +92,7 @@ test("provider concurrency and changed-payload errors remain distinct; no automa
   }
 });
 test("acceptance requires a provider id; malformed success, 5xx, redirects and timeouts remain unconfirmed", async () => {
-  for (const send of [async () => Response.json({}), async () => new Response("bad json"),
+  for (const send of [async () => Response.json({}), async () => Response.json({ id: "-".repeat(36) }), async () => new Response("bad json"),
     async () => Response.json({ message: "private key" }, { status: 503 }), async () => { throw new Error("private key"); }]) {
     const response = await fixture({ deliver: createResendDelivery(mailConfig, send) }).handler(request(data()));
     assert.equal(response.status, 502); assert.doesNotMatch(await response.text(), /private key/);

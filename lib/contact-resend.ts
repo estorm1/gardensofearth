@@ -45,7 +45,7 @@ export function createResendDelivery(config: ResendConfig, send: typeof fetch = 
         signal: AbortSignal.timeout(12000),
       });
       const data = await response.json().catch(() => null) as { id?: unknown; name?: unknown } | null;
-      if (response.ok && typeof data?.id === "string" && /^[0-9a-f-]{36}$/i.test(data.id)) return;
+      if (response.ok && typeof data?.id === "string" && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(data.id)) return;
       if (response.status === 409 && data?.name === "concurrent_idempotent_requests") throw new ResendError("pending");
       if (response.status === 409 && data?.name === "invalid_idempotent_request") throw new ResendError("conflict");
       if (response.status === 429) {
