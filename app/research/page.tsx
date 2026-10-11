@@ -3,6 +3,7 @@ import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import SiteHeader from "../site-header";
+import BookPromotion from "../book-promotion";
 import city from "../../public/images/research/vascular-city.webp";
 import fabrication from "../../public/images/research/robotic-fabrication.webp";
 import rail from "../../public/images/research/rail-access.webp";
@@ -537,6 +538,7 @@ export default function ResearchPage() {
             </footer>
           </article>
         </div>
+        <BookPromotion />
       </main>
       <footer className={styles.pageFooter}>
         <Link href="/">Gardens of Earth</Link>

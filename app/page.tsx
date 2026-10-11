@@ -1,5 +1,7 @@
 "use client";
 
+import BookPromotion from "./book-promotion";
+
 import Image from "next/image";
 import Link from "next/link";
 import LivingSystems from "./living-systems";
@@ -605,8 +607,12 @@ export default function Home() {
         <MobilityStory />
         <RiverStory />
         <FilmSection />
+        <div id="news" tabIndex={-1}>
+          <BookPromotion announcement />
+        </div>
         <MapStory />
         <ClosingSection />
+        <BookPromotion />
       </main>
       <BottomNavigation />
     </>

@@ -3,6 +3,15 @@
 Next.js 16.4 with React 19, TypeScript, Tailwind CSS, and an optional Three.js
 network globe. The pages are `/`, `/research`, `/about`, `/ges`, and `/contact`.
 `/about#book` contains book information; checkout and paid downloads are pending.
+The News destination is `/#news`; it announces the upcoming audiobook release.
+Home, Research, and About include a book promotion with the same opt-in Chapter 9
+preview. Audio controls and the source mount on request, with no autoplay and a
+text transcript. The verified public excerpt is documented in `public/audio/README.md`.
+
+The dedicated Books page is held in a separate local checkout. Do not add its
+route, other preview files, sitemap entry, navigation, prices, or purchase links
+to this production checkout until checkout and delivery have been verified and
+the owner authorizes its release.
 
 ## Local development
 
