@@ -9,6 +9,7 @@ export const metadata = pageMetadata("Contact | Gardens of Earth",
   "Contact Eric Storm about Gardens of Earth, research, design, and collaboration.", "/contact");
 
 export default function ContactPage() {
+  const availability = contactAvailability();
   return (
     <div className={styles.page}>
       <a href="#contact-content" className={styles.skip}>Skip to Contact</a>
@@ -21,7 +22,7 @@ export default function ContactPage() {
             Send Eric Storm a note about research, design, the book, or a possible collaboration.
           </p>
         </header>
-        <ContactForm {...contactAvailability()} />
+        <ContactForm {...availability} />
         <aside className={styles.privacy} aria-labelledby="contact-privacy">
           <h2 id="contact-privacy">Your message</h2>
           <p>
@@ -29,11 +30,19 @@ export default function ContactPage() {
             to Eric Storm so he can respond. Hosting and email providers process the submission;
             please avoid sensitive personal information.
           </p>
-          <p>
+          {!availability.enabled ? <p>
+            This form does not subscribe you to a mailing list. Sending is currently unavailable;
+            no message can be submitted from this disabled form.
+          </p> : availability.usesTickets ? <p>
+            This form does not subscribe you to a mailing list. Your browser provides technical
+            signals to check for automated submissions, and repeated attempts are limited.
+            You can retry the same message for up to 20 hours. The email service retains processing
+            records; the website does not keep a separate message database.
+          </p> : <p>
             This form does not subscribe you to a mailing list. To limit abuse and duplicate sends,
             the website uses keyed hashes of your IP address and submission, plus sending status,
             for up to 24 hours. Your message text is not stored in that rate-control data.
-          </p>
+          </p>}
           <p>Acceptance by the email service does not confirm arrival in the inbox or that a message has been read.</p>
         </aside>
       </main>

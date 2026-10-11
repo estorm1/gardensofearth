@@ -3,7 +3,7 @@ import { createHmac } from "node:crypto";
 import { isIP } from "node:net";
 import { contactLimits } from "../app/contact/limits.ts";
 
-export type ContactMessage = { name: string; email: string; message: string; id: string };
+export type ContactMessage = { name: string; email: string; message: string; id: string; ticket?: string };
 export type Claim = { kind: "new" | "accepted" | "pending" | "unknown" | "conflict" | "rate"; retryAfter?: number };
 export type Completion = "accepted" | "failed" | "unknown";
 export interface ContactStore {
@@ -19,6 +19,7 @@ export type ContactDependencies = {
   store: ContactStore;
   deliver(message: ContactMessage): Promise<void>;
   now?: () => number;
+  bodyTimeoutMs?: number;
 };
 
 export class DeliveryError extends Error {
@@ -37,7 +38,7 @@ export function validEmail(value: string): boolean {
   return /^[A-Za-z0-9.!#$%&'*+/=?^_\x60{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)+$/.test(value);
 }
 
-function reply(status: number, code: string, message: string, extra: Record<string, unknown> = {}, retryAfter?: number) {
+export function contactReply(status: number, code: string, message: string, extra: Record<string, unknown> = {}, retryAfter?: number) {
   return Response.json({ code, message, ...extra }, {
     status,
     headers: {
@@ -47,17 +48,22 @@ function reply(status: number, code: string, message: string, extra: Record<stri
     },
   });
 }
+const reply = contactReply;
 
-async function readBody(request: Request) {
+class BodyTimeout extends Error {}
+async function readBody(request: Request, timeoutMs: number) {
   const declared = request.headers.get("content-length");
   if (declared && (!/^\d+$/.test(declared) || Number(declared) > contactLimits.bodyBytes)) throw new RangeError();
   const reader = request.body?.getReader();
   if (!reader) throw new SyntaxError();
   const chunks: Uint8Array[] = [];
   let bytes = 0;
+  let expired = false;
+  const timer = setTimeout(() => { expired = true; void reader.cancel().catch(() => {}); }, timeoutMs);
   try {
     for (;;) {
       const { value, done } = await reader.read();
+      if (expired) throw new BodyTimeout();
       if (done) break;
       bytes += value.byteLength;
       if (bytes > contactLimits.bodyBytes) {
@@ -66,8 +72,8 @@ async function readBody(request: Request) {
       }
       chunks.push(value);
     }
-  } finally { reader.releaseLock(); }
-  return JSON.parse(Buffer.concat(chunks).toString("utf8")) as unknown;
+  } finally { clearTimeout(timer); reader.releaseLock(); }
+  return JSON.parse(new TextDecoder("utf-8", { fatal: true }).decode(Buffer.concat(chunks))) as unknown;
 }
 
 function validate(value: unknown): ContactMessage | Record<string, string> {
@@ -87,11 +93,39 @@ function validate(value: unknown): ContactMessage | Record<string, string> {
   if (typeof input.id !== "string" || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(input.id)) {
     errors.form = "Please reload the form and try again.";
   }
+  if (input.ticket !== undefined && (typeof input.ticket !== "string" || input.ticket.length > 256)) {
+    errors.form = "Please reload the form and try again.";
+  }
   if (Object.keys(errors).length) return errors;
   return {
     name: (input.name as string).trim(), email: input.email as string,
     message: (input.message as string).trim().replace(/\r\n?/g, "\n"), id: (input.id as string).toLowerCase(),
+    ...(typeof input.ticket === "string" ? { ticket: input.ticket } : {}),
   };
+}
+
+type RequestPolicy = Pick<ContactDependencies, "enabled" | "origins" | "clientIP" | "bodyTimeoutMs">;
+export async function parseContactSubmission(request: Request, deps: RequestPolicy): Promise<Response | ContactMessage> {
+  if (request.method !== "POST") return reply(405, "method", "Use the contact form.");
+  if (!deps.enabled) return reply(503, "unavailable", "Messages are temporarily unavailable. Please check back later.", {}, 300);
+  if (!deps.origins.includes(request.headers.get("origin") ?? "") || request.headers.get("sec-fetch-site") === "cross-site") {
+    return reply(403, "origin", "Open the contact page on this website and try again.");
+  }
+  if (request.headers.get("content-type")?.split(";")[0].trim().toLowerCase() !== "application/json") {
+    return reply(415, "format", "Use the contact form.");
+  }
+  const ip = deps.clientIP(request);
+  if (!ip || !isIP(ip)) return reply(503, "unavailable", "Sending is temporarily unavailable. Please try again later.", {}, 300);
+  let input: unknown;
+  try { input = await readBody(request, deps.bodyTimeoutMs ?? 5000); }
+  catch (error) {
+    if (error instanceof BodyTimeout) return reply(408, "timeout", "Reading your message timed out. Keep your text and retry this same submission.");
+    return error instanceof RangeError ? reply(413, "size", "Your message is too long.")
+      : reply(400, "format", "Please reload the form and try again.");
+  }
+  const validated = validate(input);
+  return "id" in validated ? validated as ContactMessage
+    : reply(400, "validation", "Please check the highlighted fields.", { errors: validated });
 }
 
 export function createContactHandler(deps: ContactDependencies) {
@@ -100,34 +134,17 @@ export function createContactHandler(deps: ContactDependencies) {
     ? "Local preview: mock delivery accepted. No email was sent."
     : "The email service accepted your message. This does not confirm it has arrived or been read.");
   return async (request: Request): Promise<Response> => {
-    if (request.method !== "POST") return reply(405, "method", "Use the contact form.");
-    if (!deps.enabled) return reply(503, "unavailable", "Messages are temporarily unavailable. Please check back later.", {}, 300);
-    if (!deps.origins.includes(request.headers.get("origin") ?? "") || request.headers.get("sec-fetch-site") === "cross-site") {
-      return reply(403, "origin", "Open the contact page on this website and try again.");
-    }
-    if (request.headers.get("content-type")?.split(";")[0].trim().toLowerCase() !== "application/json") {
-      return reply(415, "format", "Use the contact form.");
-    }
-    const ip = deps.clientIP(request);
-    if (!ip || !isIP(ip)) return reply(503, "unavailable", "Sending is temporarily unavailable. Please try again later.", {}, 300);
-    let input: unknown;
-    try { input = await readBody(request); }
-    catch (error) {
-      return error instanceof RangeError ? reply(413, "size", "Your message is too long.")
-        : reply(400, "format", "Please reload the form and try again.");
-    }
-    const validated = validate(input);
-    if (!("id" in validated)) return reply(400, "validation", "Please check the highlighted fields.", { errors: validated });
-    const message = validated as ContactMessage;
+    const message = await parseContactSubmission(request, deps);
+    if (message instanceof Response) return message;
     const id = digest("id:" + message.id);
     const fingerprint = digest(JSON.stringify([message.name, message.email, message.message]));
-    const ipHash = digest("ip:" + ip.toLowerCase());
+    const ipHash = digest("ip:" + deps.clientIP(request)!.toLowerCase());
     let claim: Claim;
     try { claim = await deps.store.claim(id, fingerprint, ipHash, (deps.now ?? Date.now)()); }
     catch { return reply(503, "unavailable", "Sending is temporarily unavailable. Your message has not been emailed. Try again later.", {}, 300); }
     if (claim.kind === "accepted") return accepted();
     if (claim.kind === "rate") return reply(429, "rate", "Please wait before sending another message.", {}, claim.retryAfter ?? 3600);
-    if (claim.kind === "conflict") return reply(409, "conflict", "This submission changed. Reload the form before starting a new message.");
+    if (claim.kind === "conflict") return reply(409, "conflict", "This submission differs from a previous attempt. Keep a copy; a previous attempt may already have been accepted. Please avoid sending a second copy.");
     if (claim.kind === "pending") return reply(409, "pending", "This message is already being processed. Keep it here and retry shortly.", {}, 60);
     if (claim.kind === "unknown") return reply(409, "unconfirmed", "Delivery could not be confirmed. Your message may already have reached the email service. Please wait before starting a new submission.");
     try { await deps.deliver(message); }

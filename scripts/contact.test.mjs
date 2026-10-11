@@ -95,6 +95,15 @@ test("honeypot, header injection, multiple addresses, controls, field limits, an
   }
   assert.equal(validEmail("person+reply@example.invalid"), true);
 });
+test("a stalled streaming body is cancelled before any store reservation or delivery", async () => {
+  let cancelled = false;
+  const f = fixture({ bodyTimeoutMs: 10 });
+  const body = new ReadableStream({ cancel() { cancelled = true; } });
+  const response = await f.handler(new Request(origin + "/api/contact", {
+    method: "POST", headers: { origin, "content-type": "application/json" }, body, duplex: "half",
+  }));
+  assert.equal(response.status, 408); assert.equal(cancelled, true); assert.equal(f.sent.length, 0);
+});
 test("cooldown, three-per-hour limit, and rate Retry-After apply before delivery", async () => {
   const f = fixture();
   assert.equal((await f.handler(request(message()))).status, 202);
