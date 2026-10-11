@@ -79,7 +79,7 @@ export default function NetworkJourney({ sectionRef, progress }: { sectionRef: R
     window.scrollTo({top:section.getBoundingClientRect().top+window.scrollY+(section.offsetHeight-window.innerHeight)*p,behavior:"smooth"});
   };
   return (
-    <section ref={sectionRef} id="news" className={`${styles.section} ${displayStatus==="static"?styles.static:""}`} aria-label="Network dispatch: six cities, many climates">
+    <section ref={sectionRef} id="network-dispatch" className={`${styles.section} ${displayStatus==="static"?styles.static:""}`} aria-label="Network dispatch: six cities, many climates">
       <div className={styles.sticky}>
         <div ref={host} className={styles.globe} style={{opacity:displayStatus==="ready"?1:0}} />
         {displayStatus==="loading" && <div className={styles.loading}><Image src="/maps/earth.jpg" alt="Satellite mosaic of Earth" fill sizes="100vw" /><span>Preparing the journey</span></div>}

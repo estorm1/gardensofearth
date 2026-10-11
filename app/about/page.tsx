@@ -5,6 +5,7 @@ import transit from "../../public/images/about/preface-transit.webp";
 import corridor from "../../public/images/research/cooling-corridor.webp";
 import cover from "../../public/images/research/book-cover.webp";
 import SiteHeader from "../site-header";
+import BookPromotion from "../book-promotion";
 import styles from "./about.module.css";
 
 export const metadata = pageMetadata(
@@ -287,6 +288,17 @@ export default function AboutPage() {
               <p className={styles.eyebrow}>The research book</p>
               <h3>Vascular Los Angeles and the Biourban Future</h3>
               <p>Eric Storm / Volumes I & II</p>
+              <p className={styles.bookReadingNote}>
+                The books combine imagined experiences of future cities with detailed technical
+                discussions of infrastructure, mobility, water systems, architecture, and simulation.
+                Some sections are more demanding than general-interest nonfiction and may reward
+                slower reading or revisiting alongside the books&apos; illustrations.
+              </p>
+              <p className={styles.bookReadingNote}>
+                The technical sections can also serve as a conceptual reference for serious builders,
+                designers, and planners developing ideas of their own. The proposals require
+                project-specific engineering and validation.
+              </p>
               <p className={styles.bookAvailability}>Purchase and download details will be announced here.</p>
               <Link className={styles.textLink} href="/research">Read the research synthesis</Link>
             </aside>
@@ -321,6 +333,7 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
+        <BookPromotion />
       </main>
 
       <footer className={`${styles.inner} ${styles.footer}`}>
