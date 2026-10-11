@@ -20,6 +20,7 @@ installed Next.js documentation in `node_modules/next/dist/docs/`.
 
 ```sh
 npm run lint
+npm audit --omit=dev
 npm test
 npm run build
 npm run start -- --hostname 127.0.0.1 --port 3418
