@@ -9,6 +9,8 @@
 .copy .availability { font-size: 14px !important; }
 .links { display: flex; flex-wrap: wrap; gap: 12px 28px; margin: 22px 0 30px; }
 .section a, .preview a { color: #2c6650; font-size: 14px; text-decoration: underline; text-underline-offset: 4px; }
+.section .copy > p a, .section .copy h2 a, .preview .eyebrow a { font: inherit; }
+.section .copy :is(h2, .eyebrow, .subtitle) a, .preview .eyebrow a { color: inherit; }
 .links a, .audioLink { display: inline-flex; align-items: center; min-height: 44px; }
 .section :is(a, button, audio, summary):focus-visible, .preview :is(a, button, audio, summary):focus-visible { outline: 3px solid #237d98; outline-offset: 5px; border-radius: 3px; }
 .preview { padding-top: 24px; border-top: 1px solid #c8d8cd; color: #253b32; }

@@ -2,7 +2,8 @@
 
 Next.js 16.4 with React 19, TypeScript, Tailwind CSS, and an optional Three.js
 network globe. The pages are `/`, `/research`, `/about`, `/ges`, `/books`, and `/contact`.
-`/books` links the two $7 USD audiobooks to Payhip's hosted checkout.
+`/books` links the two full M4B audiobooks, $7 USD each, to Payhip's hosted checkout.
+Audiobook mentions elsewhere link to `/books`; only its two Buy buttons lead to Payhip.
 The News destination is `/#news`; it announces the audiobook release.
 Home, Research, and About include a book promotion with the same opt-in Chapter 9
 preview. Audio controls and the source mount on request, with no autoplay and a

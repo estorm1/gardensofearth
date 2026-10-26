@@ -6,6 +6,7 @@ import corridor from "../../public/images/research/cooling-corridor.webp";
 import cover from "../../public/images/research/book-cover.webp";
 import SiteHeader from "../site-header";
 import BookPromotion from "../book-promotion";
+import { audiobookOffers, audiobookPlaybackNote } from "../books/catalog";
 import styles from "./about.module.css";
 
 export const metadata = pageMetadata(
@@ -286,7 +287,7 @@ export default function AboutPage() {
             <aside id="book" className={styles.book} aria-label="The research book" tabIndex={-1}>
               <Image src={cover} alt="Gardens of Earth, Volume I, by Eric Storm." sizes="180px" placeholder="blur" />
               <p className={styles.eyebrow}>The research book</p>
-              <h3>Vascular Los Angeles and the Biourban Future</h3>
+              <h3><Link href="/books">Vascular Los Angeles and the Biourban Future</Link></h3>
               <p>Eric Storm / Volumes I & II</p>
               <p className={styles.bookReadingNote}>
                 The books combine imagined experiences of future cities with detailed technical
@@ -299,7 +300,8 @@ export default function AboutPage() {
                 designers, and planners developing ideas of their own. The proposals require
                 project-specific engineering and validation.
               </p>
-              <p className={styles.bookAvailability}>Audiobooks are available for $7 USD per volume. <Link href="/books">View formats and purchase options.</Link></p>
+              <p className={styles.bookAvailability}><Link href="/books">Full M4B audiobooks are available for ${audiobookOffers[0].priceUsd} USD per volume. View formats and purchase options.</Link></p>
+              <p className={styles.bookAvailability}>{audiobookPlaybackNote}</p>
               <Link className={styles.textLink} href="/research">Read the research synthesis</Link>
             </aside>
           </div>

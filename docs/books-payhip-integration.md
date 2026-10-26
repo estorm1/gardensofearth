@@ -9,6 +9,8 @@ Eric explicitly approved the combined Books/dependency public release on 26 Octo
 - `/books` follows the current site's header, typography, colors and existing held cover/layout design.
 - Volume I and II audiobook offers show $7 USD each. Both `available` values in `app/books/catalog.ts` are true in this local release candidate.
 - Ordinary same-tab Buy links point to the verified hosted checkout routes `https://payhip.com/buy?link=QMZfk` and `https://payhip.com/buy?link=wAYy7`. No third-party script, iframe, legacy embed or paid-file URL is used.
+- Other audiobook mentions link internally to `/books`, including Home/News/Research/About promotions and preview labels. Playback controls and the approved Chapter 9 file link keep their existing functions. Only the two Books purchase buttons lead to Payhip.
+- Both offers are explicitly full M4B audiobooks. Print listings remain separate from audiobook availability.
 - Both offers state: **Works with Apple Books on Mac and VLC on Mac and Windows.** The note is visible before each purchase link and associated with it for assistive technology. It reflects owner-reported testing and does not imply that Apple Books runs on Windows.
 - The agreed $11 USD bundle is unavailable and has no checkout URL. Two individual $7 items must not be represented as an $11 bundle.
 - Volume I print has no invented Amazon link. Volume II print reads **Available soon**. Neither is purchasable.

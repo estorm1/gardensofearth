@@ -11,6 +11,7 @@
 }
 
 .page a { color: inherit; }
+.book a[href="/books"] { text-decoration: underline; text-underline-offset: 4px; }
 .page a:focus-visible { outline: 3px solid #237d98; outline-offset: 5px; border-radius: 2px; }
 .skipLink {
   position: fixed;

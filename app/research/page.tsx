@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import SiteHeader from "../site-header";
 import BookPromotion from "../book-promotion";
+import { audiobookOffers, audiobookPlaybackNote } from "../books/catalog";
 import city from "../../public/images/research/vascular-city.webp";
 import fabrication from "../../public/images/research/robotic-fabrication.webp";
 import rail from "../../public/images/research/rail-access.webp";
@@ -158,7 +159,7 @@ export default function ResearchPage() {
         <header className={styles.introduction}>
           <p className={styles.eyebrow}>The research book / Eric Storm</p>
           <h1>Research</h1>
-          <p className={styles.bookTitle}>Vascular Los Angeles and the Biourban Future</p>
+          <p className={styles.bookTitle}><Link href="/books">Vascular Los Angeles and the Biourban Future</Link></p>
           <p className={styles.introText}>
             What would it take to turn a city of hard surfaces and disconnected systems into a living landscape?
             Gardens of Earth explores a Los Angeles where water, terrain, movement, canopy, and civic life
@@ -527,11 +528,14 @@ export default function ResearchPage() {
             <footer className={styles.sourceBook}>
               <Image src={cover} alt="Cover of Gardens of Earth, Volume I, by Eric Storm." sizes="160px" />
               <div>
-                <p className={styles.eyebrow}>Source manuscript</p>
-                <h2>Gardens of Earth</h2>
+                <p className={styles.eyebrow}>Source books</p>
+                <h2><Link href="/books">Gardens of Earth</Link></h2>
                 <p className={styles.sourceSubtitle}>Vascular Los Angeles and the Biourban Future</p>
                 <p>Eric Storm / Volumes I & II / 56 chapters</p>
-                <Link className={styles.textLink} href="/about#book">Book and author information</Link>
+                <p><Link href="/books">Volume I and Volume II full M4B audiobooks — ${audiobookOffers[0].priceUsd} USD each.</Link></p>
+                <p>{audiobookPlaybackNote}</p>
+                <Link className={styles.textLink} href="/books">Books and audiobooks</Link>{" · "}
+                <Link className={styles.textLink} href="/about#author">About Eric Storm</Link>
                 <p>This page synthesizes the book&apos;s design and research agenda. Chapter references identify the underlying discussions. Illustrations are concept studies from the book, not photographs of completed projects, engineering approvals, or evidence of institutional participation.</p>
                 <p>The integrated system, proposed pilots, authority, and roadmap remain proposals. Existing precedents inform the questions; they do not validate the complete vision.</p>
               </div>

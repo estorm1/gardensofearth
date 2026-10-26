@@ -11,6 +11,7 @@
 }
 
 .page a { color: inherit; }
+.bookTitle a, .sourceBook a { text-decoration: underline; text-underline-offset: 4px; }
 .page a:focus-visible, .page summary:focus-visible {
   outline: 3px solid #237d98;
   outline-offset: 5px;

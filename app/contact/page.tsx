@@ -1,4 +1,5 @@
 import { pageMetadata } from "../site-metadata";
+import Link from "next/link";
 import SiteHeader from "../site-header";
 import { contactAvailability } from "../../lib/contact-config";
 import ContactForm from "./contact-form";
@@ -19,7 +20,7 @@ export default function ContactPage() {
           <p className={styles.eyebrow}>Gardens of Earth / Contact</p>
           <h1>Continue the conversation.</h1>
           <p className={styles.lead}>
-            Send Eric Storm a note about research, design, the book, or a possible collaboration.
+            Send Eric Storm a note about research, design, <Link className={styles.bookLink} href="/books">the book</Link>, or a possible collaboration.
           </p>
         </header>
         <ContactForm {...availability} />

@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
+import Link from "next/link";
 import styles from "./book-promotion.module.css";
 
 export type Preview = {
@@ -14,7 +15,7 @@ export type Preview = {
 
 const focusControls = (element: HTMLAudioElement | null) => { element?.focus(); };
 
-export default function AudioPreview({ sample }: { sample: Preview }) {
+export default function AudioPreview({ sample, linkToBooks = false }: { sample: Preview; linkToBooks?: boolean }) {
   const id = useId();
   const [loaded, setLoaded] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -22,7 +23,7 @@ export default function AudioPreview({ sample }: { sample: Preview }) {
 
   return (
     <div className={styles.preview}>
-      <p className={styles.eyebrow}>Audiobook preview{sample.duration ? ` · ${sample.duration}` : ""}</p>
+      <p className={styles.eyebrow}>{linkToBooks ? <Link href="/books">Audiobook preview</Link> : "Audiobook preview"}{sample.duration ? ` · ${sample.duration}` : ""}</p>
       <h3 id={`${id}-title`}>{sample.title}</h3>
       <p className={styles.context}>{sample.context}</p>
       <p>{sample.description}</p>

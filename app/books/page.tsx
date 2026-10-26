@@ -10,7 +10,7 @@ import { audiobookBundle, audiobookOffers, audiobookPlaybackNote, printEditions,
 import styles from "./books.module.css";
 
 export const metadata = {
-  ...pageMetadata("Books | Gardens of Earth", "Explore Eric Storm’s two-volume vision of living cities, choose an audiobook, and listen to a Chapter 9 preview.", "/books"),
+  ...pageMetadata("Books | Gardens of Earth", "Explore Eric Storm’s Gardens of Earth: Volume I and II full M4B audiobooks at $7 USD each, plus the Chapter 9 preview.", "/books"),
   robots: { index: true, follow: true },
 };
 
@@ -24,7 +24,7 @@ function AudiobookPurchase({ offer }: { offer: AudiobookOffer }) {
   const formatId = `${offer.id}-playback`;
   return (
     <div className={styles.offer}>
-      <h3>Audiobook</h3>
+      <h3>Full M4B audiobook</h3>
       <p className={styles.price}>${offer.priceUsd} <span>USD</span></p>
       <p id={formatId}>{audiobookPlaybackNote}</p>
       {offer.available ? (
