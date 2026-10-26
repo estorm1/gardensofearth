@@ -130,7 +130,7 @@ function MainNavigation({ opacity = 1 }: { opacity?: number }) {
         </span>
         <Link href="/about">About</Link>
         <span className="goe-nav__separator" aria-hidden="true">|</span>
-        <Link href="/about#book">Book</Link>
+        <Link href="/books">Books</Link>
         <span className="goe-nav__separator" aria-hidden="true">
           |
         </span>
@@ -589,7 +589,7 @@ function BottomNavigation() {
         <Link href="/ges">GES</Link>
         <a href="#news">News</a>
         <Link href="/about">About</Link>
-        <Link href="/about#book">Book</Link>
+        <Link href="/books">Books</Link>
         <a href="#contact">Contact</a>
         <a className="goe-back-to-top" href="#home">Back to top <span aria-hidden="true">↑</span></a>
       </nav>

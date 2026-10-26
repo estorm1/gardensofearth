@@ -299,7 +299,7 @@ export default function AboutPage() {
                 designers, and planners developing ideas of their own. The proposals require
                 project-specific engineering and validation.
               </p>
-              <p className={styles.bookAvailability}>Purchase and download details will be announced here.</p>
+              <p className={styles.bookAvailability}>Audiobooks are available for $7 USD per volume. <Link href="/books">View formats and purchase options.</Link></p>
               <Link className={styles.textLink} href="/research">Read the research synthesis</Link>
             </aside>
           </div>

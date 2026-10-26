@@ -1,17 +1,18 @@
 # Gardens of Earth website
 
 Next.js 16.4 with React 19, TypeScript, Tailwind CSS, and an optional Three.js
-network globe. The pages are `/`, `/research`, `/about`, `/ges`, and `/contact`.
-`/about#book` contains book information; checkout and paid downloads are pending.
-The News destination is `/#news`; it announces the upcoming audiobook release.
+network globe. The pages are `/`, `/research`, `/about`, `/ges`, `/books`, and `/contact`.
+`/books` links the two $7 USD audiobooks to Payhip's hosted checkout.
+The News destination is `/#news`; it announces the audiobook release.
 Home, Research, and About include a book promotion with the same opt-in Chapter 9
 preview. Audio controls and the source mount on request, with no autoplay and a
 text transcript. The verified public excerpt is documented in `public/audio/README.md`.
 
-The dedicated Books page is held in a separate local checkout. Do not add its
-route, other preview files, sitemap entry, navigation, prices, or purchase links
-to this production checkout until checkout and delivery have been verified and
-the owner authorizes its release.
+The owner approved the combined Books/dependency release and confirmed both
+products in a private-browser cart. The compatibility notice reflects owner
+testing: Works with Apple Books on Mac and VLC on Mac and Windows.
+Paid transactions, delivery and receipts have not been tested by this website
+task. The $11 bundle remains unavailable; print options stay in preparation.
 
 ## Local development
 
@@ -38,7 +39,7 @@ npm run start -- --hostname 127.0.0.1 --port 3418
 Open <http://127.0.0.1:3418>. `next build` compiles TypeScript and prerenders the
 pages, `robots.txt`, and `sitemap.xml`. The existing `next/font/google` setup
 fetches Geist fonts during a clean build, so the build needs internet access.
-Check all pages on desktop and mobile, keyboard navigation, the Book anchor,
+Check all pages on desktop and mobile, keyboard navigation, the Books route,
 and the reduced-motion/static alternatives before releasing.
 
 ## Website assets and publication
@@ -53,14 +54,14 @@ review output are excluded from Git. Never place unpublished manuscripts,
 audiobooks, purchase credentials, or private delivery links in `public`.
 
 Metadata targets the intended canonical origin, <https://gardensofearth.com>.
-The existing host is Vercel, but the custom domain and TLS must be verified
-before launch. A Git push can trigger a deployment through the existing Git
+The existing host is the Gardens of Earth project on Vercel; the custom domain
+and TLS are live. A Git push can trigger a deployment through the existing Git
 integration; local review does not require a push or deployment.
 
-Before opening book sales, approve the formats and final files, prices,
-checkout provider, delivery/access method, and customer support contact.
-Google Drive delivery has not been finalized. Configure and verify that flow
-separately; the site currently contains no working purchase or download link.
+Payments and paid delivery are handled by Payhip. The website links only to
+hosted checkout, never full audio masters or private delivery URLs. The owner
+accepted the files and approved prices and release. Verify paid delivery and
+receipts separately before claiming that those flows have been tested.
 
 ## Private contact form
 

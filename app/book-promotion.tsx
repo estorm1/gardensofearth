@@ -11,12 +11,13 @@ export default function BookPromotion({ announcement = false }: { announcement?:
       <div className={styles.inner}>
         <Image className={styles.cover} src={cover} alt="Gardens of Earth, Volume I, by Eric Storm." sizes="(max-width: 640px) 140px, 200px" placeholder="blur" />
         <div className={styles.copy}>
-          <p className={styles.eyebrow}>{announcement ? "News · Upcoming release" : "From the books · Eric Storm"}</p>
-          <h2 id={announcement ? "release-title" : "book-preview-title"}>{announcement ? "The Gardens of Earth audiobook is coming." : "Imagine the city. Explore what it would take."}</h2>
+          <p className={styles.eyebrow}>{announcement ? "News · Audiobooks" : "From the books · Eric Storm"}</p>
+          <h2 id={announcement ? "release-title" : "book-preview-title"}>{announcement ? "The Gardens of Earth audiobooks are available." : "Imagine the city. Explore what it would take."}</h2>
           <p className={styles.subtitle}>Gardens of Earth: {bookTitle}</p>
-          <p>{announcement ? "An audiobook release is in preparation for Eric Storm’s two-volume exploration of living cities. Listen to a short, AI-narrated excerpt from Chapter 9: a quiet boat journey, followed by the practical questions behind its water landscape." : "Across two volumes, imagined everyday life meets a detailed exploration of water, infrastructure, mobility, architecture, and civic care. Start with a short audiobook preview, then explore the ideas behind it."}</p>
-          <p className={styles.availability}>{announcement ? "The release date and purchase and download details will be announced when they are ready." : "The audiobook is in preparation. Purchase and download details will be announced when they are ready."}</p>
+          <p>{announcement ? "Eric Storm’s two-volume exploration of living cities is available as AI-narrated audiobooks. Listen to a short excerpt from Chapter 9: a quiet boat journey, followed by the practical questions behind its water landscape." : "Across two volumes, imagined everyday life meets a detailed exploration of water, infrastructure, mobility, architecture, and civic care. Explore the volumes, hear a short preview, or choose an audiobook."}</p>
+          <p className={styles.availability}>Volume I and Volume II audiobooks are available for $7 USD each on Payhip.</p>
           <div className={styles.links}>
+            <Link href="/books">Explore books and audiobooks</Link>
             <Link href="/about#book">About the books and author</Link>
             <Link href="/research">Explore the research</Link>
           </div>

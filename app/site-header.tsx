@@ -7,7 +7,7 @@ const navigation = [
   { label: "GES", href: "/ges" },
   { label: "News", href: "/#news" },
   { label: "About", href: "/about" },
-  { label: "Book", href: "/about#book" },
+  { label: "Books", href: "/books" },
   { label: "Contact", href: "/contact" },
 ] as const;
 
@@ -15,7 +15,7 @@ export default function SiteHeader({
   currentPage,
   subtitle,
 }: {
-  currentPage: "Research" | "GES" | "About" | "Contact";
+  currentPage: "Research" | "GES" | "About" | "Contact" | "Books";
   subtitle: string;
 }) {
   return (
