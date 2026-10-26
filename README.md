@@ -13,7 +13,7 @@ The owner approved the combined Books/dependency release and confirmed both
 products in a private-browser cart. The compatibility notice reflects owner
 testing: Works with Apple Books on Mac and VLC on Mac and Windows.
 Paid transactions, delivery and receipts have not been tested by this website
-task. The $11 bundle remains unavailable; print options stay in preparation.
+task. Only the individual audiobooks are offered; print options stay in preparation.
 
 ## Local development
 

@@ -19,17 +19,13 @@
 .volume p:last-child { margin-bottom: 0; }
 .offer { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--line); }
 .offer h3, .printEdition h3 { margin: 0 0 10px; font-size: 16px; font-weight: 750; }
-.volume .offer .price, .bundle .price { margin: 0 0 16px; color: #253b32; font-size: 32px; font-weight: 750; line-height: 1.25; }
+.volume .offer .price { margin: 0 0 16px; color: #253b32; font-size: 32px; font-weight: 750; line-height: 1.25; }
 .price span { color: #52645c; font-size: 13px; font-weight: 600; }
 .page .purchaseButton { display: inline-flex; justify-content: center; align-items: center; min-height: 48px; max-width: 100%; padding: 12px 20px; border: 1px solid #2c6650; border-radius: 4px; background: #2c6650; color: #fff; font: inherit; font-size: 14px; font-weight: 700; line-height: 1.5; text-align: center; text-decoration: none; }
 .page .purchaseButton:disabled { border-color: #cbd8cf; background: #e3ebe5; color: #42594c; opacity: 1; cursor: not-allowed; }
-.volume .offer .offerStatus, .volume .printEdition .offerStatus, .bundle .offerStatus { margin: 12px 0 0; color: #52645c; font-size: 13px; line-height: 1.7; }
+.volume .offer .offerStatus, .volume .printEdition .offerStatus { margin: 12px 0 0; color: #52645c; font-size: 13px; line-height: 1.7; }
 .printEdition { margin-top: 28px; }
 .volume .printEdition .printStatus { margin: 0; color: #2c6650; font-size: 15px; font-weight: 700; }
-.bundle { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 32px; padding: 32px; margin-bottom: 48px; border: 1px solid var(--line); border-radius: 4px; background: #f1f5ef; scroll-margin-top: 24px; }
-.bundle h2 { max-width: 30ch; margin: 0 0 16px; font-size: clamp(25px, 3vw, 32px); line-height: 1.3; font-weight: 750; text-wrap: balance; }
-.bundle > div > p:not(.eyebrow, .price) { max-width: 64ch; margin-bottom: 0; color: #52645c; font-size: 15px; line-height: 1.8; }
-.bundleAction { min-width: 190px; }
 .reading, .audioSection, .release { padding: 48px 0; border-top: 1px solid var(--line); scroll-margin-top: 24px; }
 .reading h2, .audioSection h2, .release h2 { max-width: 32ch; margin: 0 0 24px; font-size: clamp(27px, 3vw, 36px); line-height: 1.25; font-weight: 750; text-wrap: balance; }
 .prose { max-width: 80ch; }
@@ -41,4 +37,4 @@
 .release > p:last-child { max-width: 76ch; color: #52645c; font-size: 16px; line-height: 1.8; }
 .footer { margin-top: 0; padding: 24px 0 40px; border-top: 1px solid var(--line); }
 @media (max-width: 1100px) { .inner { width: calc(100% - 64px); } .volumes { gap: 32px; } .volume { grid-template-columns: minmax(0, 1fr); } .volume img { width: 200px; } }
-@media (max-width: 640px) { .inner { width: calc(100% - 40px); } .intro { padding: 40px 0 28px; } .volumes { grid-template-columns: minmax(0, 1fr); gap: 40px; } .volume img { width: 180px; } .lead { font-size: 16px; } .reading, .audioSection, .release { padding: 36px 0; } .samples article { padding: 22px 20px; } .bundle { grid-template-columns: minmax(0, 1fr); padding: 24px 20px; margin-bottom: 36px; gap: 24px; } }
+@media (max-width: 640px) { .inner { width: calc(100% - 40px); } .intro { padding: 40px 0 28px; } .volumes { grid-template-columns: minmax(0, 1fr); gap: 40px; } .volume img { width: 180px; } .lead { font-size: 16px; } .reading, .audioSection, .release { padding: 36px 0; } .samples article { padding: 22px 20px; } }

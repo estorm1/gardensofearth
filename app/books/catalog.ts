@@ -18,9 +18,6 @@ export const audiobookOffers: AudiobookOffer[] = [
 
 export const audiobookPlaybackNote = "Works with Apple Books on Mac and VLC on Mac and Windows.";
 
-// The agreed bundle has not been created. Do not substitute a two-item $14 cart.
-export const audiobookBundle = { priceUsd: 11, available: false, checkoutUrl: null } as const;
-
 // Add only a verified public Amazon listing after a separate print release.
 export const printEditions = {
   "volume-i": { amazonUrl: null, label: "In preparation" },

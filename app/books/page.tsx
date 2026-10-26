@@ -6,7 +6,7 @@ import { bookTitle, chapter9Preview, readingNote, referenceNote } from "../book-
 import { pageMetadata } from "../site-metadata";
 import volumeI from "../../public/images/books/volume-i.webp";
 import volumeII from "../../public/images/books/volume-ii.webp";
-import { audiobookBundle, audiobookOffers, audiobookPlaybackNote, printEditions, type AudiobookOffer } from "./catalog";
+import { audiobookOffers, audiobookPlaybackNote, printEditions, type AudiobookOffer } from "./catalog";
 import styles from "./books.module.css";
 
 export const metadata = {
@@ -54,7 +54,7 @@ export default function BooksPage() {
           <p className={styles.subtitle}>{bookTitle}</p>
           <p className={styles.lead}>A two-volume exploration of how a city could become a connected life-support system: shaded, water-literate, human-centered, and cared for over time.</p>
           <nav className={styles.sectionNav} aria-label="Books sections">
-            <a href="#volumes">Explore the volumes</a><a href="#reading">For readers and builders</a><a href="#audio">Listen to a preview</a><a href="#bundle">Audiobook bundle</a>
+            <a href="#volumes">Explore the volumes</a><a href="#reading">For readers and builders</a><a href="#audio">Listen to a preview</a>
           </nav>
         </header>
         <section id="volumes" className={styles.volumes} aria-label="The two volumes">
@@ -79,19 +79,6 @@ export default function BooksPage() {
               </article>
             );
           })}
-        </section>
-        <section id="bundle" className={styles.bundle} aria-labelledby="bundle-title">
-          <div>
-            <p className={styles.eyebrow}>Both volumes</p>
-            <h2 id="bundle-title">The two-volume audiobook bundle</h2>
-            <p>Both audiobooks together. The bundle is in preparation and is not available for purchase yet.</p>
-          </div>
-          <div className={styles.bundleAction}>
-            <p className={styles.price}>${audiobookBundle.priceUsd} <span>USD</span></p>
-            <button className={styles.purchaseButton} type="button" disabled
-              aria-label="Two-volume audiobook bundle purchase unavailable" aria-describedby="bundle-availability">Bundle unavailable</button>
-            <p id="bundle-availability" className={styles.offerStatus}>In preparation</p>
-          </div>
         </section>
         <section id="reading" className={styles.reading} aria-labelledby="reading-title">
           <p className={styles.eyebrow}>For readers and builders</p>

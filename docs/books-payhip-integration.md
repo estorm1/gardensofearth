@@ -12,7 +12,7 @@ Eric explicitly approved the combined Books/dependency public release on 26 Octo
 - Other audiobook mentions link internally to `/books`, including Home/News/Research/About promotions and preview labels. Playback controls and the approved Chapter 9 file link keep their existing functions. Only the two Books purchase buttons lead to Payhip.
 - Both offers are explicitly full M4B audiobooks. Print listings remain separate from audiobook availability.
 - Both offers state: **Works with Apple Books on Mac and VLC on Mac and Windows.** The note is visible before each purchase link and associated with it for assistive technology. It reflects owner-reported testing and does not imply that Apple Books runs on Windows.
-- The agreed $11 USD bundle is unavailable and has no checkout URL. Two individual $7 items must not be represented as an $11 bundle.
+- Only the individual audiobooks are offered. The owner requested removal of the planned bundle from the website; no bundle was created in Payhip.
 - Volume I print has no invented Amazon link. Volume II print reads **Available soon**. Neither is purchasable.
 - The existing authorized Chapter 9 preview is reused unchanged. No additional preview, full audiobook, private delivery link or paid-file URL is copied into this worktree.
 - Books is linked from site navigation and the Home, Research, About and News promotions. The public candidate uses index/follow metadata and includes `/books` in the sitemap. Contact behavior remains unchanged.
@@ -38,7 +38,7 @@ The earlier local CSS-worker port restriction was resolved through normal execut
 
 1. The parent reports both products Visible at $7, and the owner confirmed both in a private-browser cart. Preserve that evidence instead of repeating Cloudflare-challenged requests.
 2. Publish only the reviewed website/dependency diff and verify the live page and correct hosted checkout links without placing an order. Cart access does not verify paid checkout, delivery or receipts; no real purchase is authorized here.
-3. Create and verify the agreed $11 bundle separately before providing its own real purchase route. Keep its current button disabled until then.
+3. Do not create or add a bundle as part of this release.
 4. Add Volume I print only after its actual public Amazon listing is supplied and verified. Volume II print stays Available soon until separately ready.
 
 Payment, paid downloads and customer receipts stay with Payhip. Website links must point to hosted checkout, never full masters, website audio assets or private delivery URLs.
