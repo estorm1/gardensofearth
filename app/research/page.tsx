@@ -19,7 +19,7 @@ import cover from "../../public/images/research/book-cover.webp";
 import styles from "./research.module.css";
 
 export const metadata = pageMetadata(
-  "Research | Gardens of Earth",
+  "Biourban Research: Water & Living Cities | Gardens of Earth",
   "A synthesis of Eric Storm's Vascular Los Angeles and the Biourban Future: water, living terrain, mobility, canopy, civic life, and an evidence-led path to pilots.",
   "/research",
 );

@@ -10,7 +10,7 @@ import { audiobookOffers, audiobookPlaybackNote } from "../books/catalog";
 import styles from "./about.module.css";
 
 export const metadata = pageMetadata(
-  "About | Gardens of Earth",
+  "About Eric Storm & the Biourban Vision | Gardens of Earth",
   "Eric Storm's Gardens of Earth: the origins of Vascular Los Angeles, a connected biourban vision, and a gradual, place-specific path toward living cities worldwide.",
   "/about",
 );

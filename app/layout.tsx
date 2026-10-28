@@ -1,5 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import { pageMetadata } from "./site-metadata";
+import { pageMetadata, siteUrl } from "./site-metadata";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = pageMetadata(
-  "Gardens of Earth",
+  "Gardens of Earth | Living Cities & Vascular Los Angeles",
   "Explore Eric Storm's Gardens of Earth: Vascular Los Angeles and the Biourban Future, connecting water, habitat, mobility, and life in our cities.",
   "/",
 );
@@ -29,7 +29,20 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Gardens of Earth",
+              url: siteUrl,
+            }).replace(/</g, "\\u003c"),
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }
