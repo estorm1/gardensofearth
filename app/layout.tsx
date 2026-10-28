@@ -12,11 +12,14 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = pageMetadata(
-  "Gardens of Earth | Living Cities & Vascular Los Angeles",
-  "Explore Eric Storm's Gardens of Earth: Vascular Los Angeles and the Biourban Future, connecting water, habitat, mobility, and life in our cities.",
-  "/",
-);
+export const metadata = {
+  ...pageMetadata(
+    "Gardens of Earth | Living Cities & Vascular Los Angeles",
+    "Explore Eric Storm's Gardens of Earth: Vascular Los Angeles and the Biourban Future, connecting water, habitat, mobility, and life in our cities.",
+    "/",
+  ),
+  verification: { google: "M-aKBNyr6E_z4r9LJwUSQyCZnaIhj9pwDpzltZKYuOc" },
+};
 
 export default function RootLayout({
   children,
