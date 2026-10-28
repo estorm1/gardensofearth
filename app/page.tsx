@@ -1,7 +1,6 @@
 "use client";
 
 import BookPromotion from "./book-promotion";
-import CityResearchNews from "./city-research-news";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -125,7 +124,7 @@ function MainNavigation({ opacity = 1 }: { opacity?: number }) {
         <span className="goe-nav__separator" aria-hidden="true">
           |
         </span>
-        <a href="#news">News</a>
+        <Link href="/news">News</Link>
         <span className="goe-nav__separator" aria-hidden="true">
           |
         </span>
@@ -588,7 +587,7 @@ function BottomNavigation() {
         <a href="#home">Home</a>
         <Link href="/research">Research</Link>
         <Link href="/ges">GES</Link>
-        <a href="#news">News</a>
+        <Link href="/news" id="news">News</Link>
         <Link href="/about">About</Link>
         <Link href="/books">Books</Link>
         <a href="#contact">Contact</a>
@@ -608,10 +607,6 @@ export default function Home() {
         <MobilityStory />
         <RiverStory />
         <FilmSection />
-        <div id="news" tabIndex={-1}>
-          <BookPromotion announcement />
-          <CityResearchNews />
-        </div>
         <MapStory />
         <ClosingSection />
         <BookPromotion />

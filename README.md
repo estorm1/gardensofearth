@@ -1,10 +1,13 @@
 # Gardens of Earth website
 
 Next.js 16.4 with React 19, TypeScript, Tailwind CSS, and an optional Three.js
-network globe. The pages are `/`, `/research`, `/about`, `/ges`, `/books`, and `/contact`.
+network globe. The pages are `/`, `/research`, `/about`, `/ges`, `/news`, `/books`,
+`/contact`, and the published city-mass article under `/research`.
 `/books` links the two full M4B audiobooks, $7 USD each, to Payhip's hosted checkout.
 Audiobook mentions elsewhere link to `/books`; only its two Buy buttons lead to Payhip.
-The News destination is `/#news`; it announces the audiobook release.
+The dedicated News page is `/news`; the audiobook release leads, followed by the
+city-mass research story. Home retains its non-announcement book promotion, hero
+and other sections. The old `/#news` fragment targets the footer's News link.
 Home, Research, and About include a book promotion with the same opt-in Chapter 9
 preview. Audio controls and the source mount on request, with no autoplay and a
 text transcript. The verified public excerpt is documented in `public/audio/README.md`.

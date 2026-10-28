@@ -83,7 +83,7 @@ export default function CityMassArticlePage() {
         </article>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
       </main>
-      <footer className={styles.footer}><Link href="/#news">Back to news</Link><Link href="/books">Books and audiobooks</Link><Link href="/contact">Contact</Link><a href="#top">Back to top</a></footer>
+      <footer className={styles.footer}><Link href="/news">Back to news</Link><Link href="/books">Books and audiobooks</Link><Link href="/contact">Contact</Link><a href="#top">Back to top</a></footer>
     </div>
   );
 }

@@ -1,0 +1,13 @@
+.page { min-height: 100vh; background: #fafcfb; color: #253b32; letter-spacing: 0; }
+.page a { color: #2c6650; }
+.page a:focus-visible { outline: 3px solid #237d98; outline-offset: 5px; border-radius: 3px; }
+.skipLink { position: fixed; top: 12px; left: 16px; z-index: 20; padding: 12px 18px; background: white; transform: translateY(-180%); }
+.skipLink:focus { transform: none; }
+.intro, .footer { width: min(1160px, calc(100% - 96px)); margin: 0 auto; }
+.intro { padding: 48px 0 36px; }
+.intro h1 { margin: 0 0 18px; font-size: clamp(40px, 6vw, 64px); line-height: 1.1; font-weight: 800; }
+.intro p { margin: 0; color: #52645c; font-size: 18px; line-height: 1.8; }
+.footer { display: flex; flex-wrap: wrap; gap: 8px 26px; padding: 24px 0 40px; border-top: 1px solid #d7e2dc; font-size: 14px; }
+.footer a { display: inline-flex; align-items: center; min-height: 44px; text-underline-offset: 5px; }
+@media (max-width: 1100px) { .intro, .footer { width: calc(100% - 64px); } }
+@media (max-width: 640px) { .intro, .footer { width: calc(100% - 40px); } .intro { padding: 36px 0 28px; } .intro p { font-size: 16px; } }

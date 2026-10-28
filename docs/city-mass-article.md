@@ -5,9 +5,12 @@ The public review-approved city-mass article, version 1, is published at
 reveals about shared infrastructure**. The body wording and evidence limitations
 are retained; the draft review banner and document pagination are omitted.
 
-The homepage News section keeps the audiobook release first. The research news
-card follows it. Research also links to the article, which links to the living
-terrain, pilots and Gaia pages. The sitemap contains the real article route.
+The dedicated `/news` page keeps the audiobook release first. The research news
+card follows it; these announcements no longer appear on Home. Home retains its
+non-announcement book promotion. The old `/#news` fragment targets the footer's
+News link, and current navigation points to `/news`. Research also links to the
+article, which links to the living terrain, pilots and Gaia pages. The sitemap
+contains both the real article route and `/news`.
 
 The byline follows the existing site metadata author convention, Eric Storm,
 with the draft's Gaia Research for Gardens of Earth credit and an AI-assistance
