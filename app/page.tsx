@@ -1,6 +1,7 @@
 "use client";
 
 import BookPromotion from "./book-promotion";
+import CityResearchNews from "./city-research-news";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -609,6 +610,7 @@ export default function Home() {
         <FilmSection />
         <div id="news" tabIndex={-1}>
           <BookPromotion announcement />
+          <CityResearchNews />
         </div>
         <MapStory />
         <ClosingSection />

@@ -15,7 +15,7 @@ export default function SiteHeader({
   currentPage,
   subtitle,
 }: {
-  currentPage: "Research" | "GES" | "About" | "Contact" | "Books";
+  currentPage?: "Research" | "GES" | "About" | "Contact" | "Books";
   subtitle: string;
 }) {
   return (

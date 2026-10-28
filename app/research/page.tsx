@@ -171,6 +171,7 @@ export default function ResearchPage() {
             <a href="#mobility">Movement & canopy</a>
             <a href="#living-labs">Evidence & pilots</a>
           </div>
+          <p><Link className={styles.textLink} href="/research/city-mass-shared-infrastructure">News analysis: what the mass of cities reveals about shared infrastructure</Link></p>
         </header>
 
         <details className={styles.mobileContents}>
