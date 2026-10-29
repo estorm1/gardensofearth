@@ -6,11 +6,11 @@ import { bookTitle, chapter9Preview, readingNote, referenceNote } from "../book-
 import { pageMetadata } from "../site-metadata";
 import volumeI from "../../public/images/books/volume-i.webp";
 import volumeII from "../../public/images/books/volume-ii.webp";
-import { audiobookOffers, audiobookPlaybackNote, printEditions, type AudiobookOffer } from "./catalog";
+import { audiobookOffers, audiobookPlaybackNote, kindleEditions, printEditions, type AudiobookOffer } from "./catalog";
 import styles from "./books.module.css";
 
 export const metadata = {
-  ...pageMetadata("Books | Gardens of Earth", "Explore Eric Storm’s Gardens of Earth: Volume I and II full M4B audiobooks at $7 USD each, plus the Chapter 9 preview.", "/books"),
+  ...pageMetadata("Books | Gardens of Earth", "Explore Eric Storm’s Gardens of Earth: Volume I and II Kindle editions on Amazon, full M4B audiobooks at $7 USD each, plus the Chapter 9 preview.", "/books"),
   robots: { index: true, follow: true },
 };
 
@@ -71,7 +71,15 @@ export default function BooksPage() {
                   <p>{volume.description}</p>
                   <AudiobookPurchase offer={offer} />
                   <div className={styles.printEdition}>
-                    <h3>Print edition</h3>
+                    <h3>Kindle ebook</h3>
+                    <a className={styles.purchaseButton} href={kindleEditions[offer.id].amazonUrl}
+                      aria-label={`View ${volume.name} Kindle edition on Amazon`} aria-describedby={`${offer.id}-kindle-availability`}>
+                      View Kindle edition on Amazon
+                    </a>
+                    <p id={`${offer.id}-kindle-availability`} className={styles.offerStatus}>See Amazon for current availability and delivery.</p>
+                  </div>
+                  <div className={styles.printEdition}>
+                    <h3>Paperback</h3>
                     <p className={styles.printStatus}>{print.label}</p>
                     {offer.id === "volume-i" ? <p className={styles.offerStatus}>A purchase link will be added when the Amazon listing is live.</p> : null}
                   </div>

@@ -42,3 +42,20 @@ The earlier local CSS-worker port restriction was resolved through normal execut
 4. Add Volume I print only after its actual public Amazon listing is supplied and verified. Volume II print stays Available soon until separately ready.
 
 Payment, paid downloads and customer receipts stay with Payhip. Website links must point to hosted checkout, never full masters, website audio assets or private delivery URLs.
+
+## Verified Kindle links — 29 October 2026
+
+The separate KDP task verified both public Kindle listings at 05:24 UTC:
+Volume I at `https://www.amazon.com/dp/B0HPMMQKSJ` and Volume II at
+`https://www.amazon.com/dp/B0HPMW8H9P`, both by Eric Storm. Although KDP labels
+them Live, the retail pages showed preorder delivery on 29 October. The Books
+page therefore uses **View Kindle edition on Amazon** and directs readers to
+Amazon for current availability and delivery; it makes no immediate-reading or
+download promise. Kindle prices are left to Amazon.
+
+Kindle ebooks, full M4B audiobooks and paperbacks have separate labelled rows.
+Volume I paperback remains in review without a verified retail URL; its existing
+In preparation notice is retained. Volume II paperback remains **Available soon**
+without a date. No paperback purchase link is added. The original held Amazon
+preparation remains separate; this release carries only the verified Kindle
+links onto the current site, preserving News and all audiobook offers.

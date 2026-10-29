@@ -18,6 +18,13 @@ export const audiobookOffers: AudiobookOffer[] = [
 
 export const audiobookPlaybackNote = "Works with Apple Books on Mac and VLC on Mac and Windows.";
 
+// Verified public Kindle listings, 29 October 2026. Retail pages showed preorder
+// delivery, so link neutrally without promising immediate reading or download.
+export const kindleEditions: Record<AudiobookOffer["id"], { amazonUrl: string }> = {
+  "volume-i": { amazonUrl: "https://www.amazon.com/dp/B0HPMMQKSJ" },
+  "volume-ii": { amazonUrl: "https://www.amazon.com/dp/B0HPMW8H9P" },
+};
+
 // Add only a verified public Amazon listing after a separate print release.
 export const printEditions = {
   "volume-i": { amazonUrl: null, label: "In preparation" },
