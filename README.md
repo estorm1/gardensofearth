@@ -16,7 +16,9 @@ The owner approved the combined Books/dependency release and confirmed both
 products in a private-browser cart. The compatibility notice reflects owner
 testing: Works with Apple Books on Mac and VLC on Mac and Windows.
 Paid transactions, delivery and receipts have not been tested by this website
-task. Only the individual audiobooks are offered; print options stay in preparation.
+task. Only the individual audiobooks are offered. Volume I paperback and both
+Kindle editions link to Amazon, which supplies current availability and pricing.
+Volume II paperback remains Available soon, without a date or purchase link.
 
 ## Local development
 

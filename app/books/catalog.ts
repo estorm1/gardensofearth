@@ -25,8 +25,9 @@ export const kindleEditions: Record<AudiobookOffer["id"], { amazonUrl: string }>
   "volume-ii": { amazonUrl: "https://www.amazon.com/dp/B0HPMW8H9P" },
 };
 
-// Add only a verified public Amazon listing after a separate print release.
+// Volume I paperback verified live on Amazon, 29 October 2026.
+// Volume II remains unpublished; never infer a retail link from a KDP draft.
 export const printEditions = {
-  "volume-i": { amazonUrl: null, label: "In preparation" },
+  "volume-i": { amazonUrl: "https://www.amazon.com/dp/B0HPPHPJVC", label: "Available on Amazon" },
   "volume-ii": { amazonUrl: null, label: "Available soon" },
 } as const;

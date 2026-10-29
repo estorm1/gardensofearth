@@ -13,7 +13,7 @@ Eric explicitly approved the combined Books/dependency public release on 26 Octo
 - Both offers are explicitly full M4B audiobooks. Print listings remain separate from audiobook availability.
 - Both offers state: **Works with Apple Books on Mac and VLC on Mac and Windows.** The note is visible before each purchase link and associated with it for assistive technology. It reflects owner-reported testing and does not imply that Apple Books runs on Windows.
 - Only the individual audiobooks are offered. The owner requested removal of the planned bundle from the website; no bundle was created in Payhip.
-- Volume I print has no invented Amazon link. Volume II print reads **Available soon**. Neither is purchasable.
+- Volume I paperback links to its verified Amazon listing. Volume II paperback reads **Available soon**, without a date or purchase link.
 - The existing authorized Chapter 9 preview is reused unchanged. No additional preview, full audiobook, private delivery link or paid-file URL is copied into this worktree.
 - Books is linked from site navigation and the Home, Research, About and News promotions. The public candidate uses index/follow metadata and includes `/books` in the sitemap. Contact behavior remains unchanged.
 
@@ -39,7 +39,7 @@ The earlier local CSS-worker port restriction was resolved through normal execut
 1. The parent reports both products Visible at $7, and the owner confirmed both in a private-browser cart. Preserve that evidence instead of repeating Cloudflare-challenged requests.
 2. Publish only the reviewed website/dependency diff and verify the live page and correct hosted checkout links without placing an order. Cart access does not verify paid checkout, delivery or receipts; no real purchase is authorized here.
 3. Do not create or add a bundle as part of this release.
-4. Add Volume I print only after its actual public Amazon listing is supplied and verified. Volume II print stays Available soon until separately ready.
+4. Volume I paperback now links to its verified public Amazon listing. Volume II paperback stays Available soon until separately ready.
 
 Payment, paid downloads and customer receipts stay with Payhip. Website links must point to hosted checkout, never full masters, website audio assets or private delivery URLs.
 
@@ -54,8 +54,20 @@ Amazon for current availability and delivery; it makes no immediate-reading or
 download promise. Kindle prices are left to Amazon.
 
 Kindle ebooks, full M4B audiobooks and paperbacks have separate labelled rows.
-Volume I paperback remains in review without a verified retail URL; its existing
-In preparation notice is retained. Volume II paperback remains **Available soon**
-without a date. No paperback purchase link is added. The original held Amazon
-preparation remains separate; this release carries only the verified Kindle
-links onto the current site, preserving News and all audiobook offers.
+At this Kindle verification, Volume I paperback was still in review; the later
+paperback verification below supersedes that pending status. Volume II paperback
+remains **Available soon** without a date. The original held Amazon preparation
+remains separate; verified links are carried onto the current site without
+applying that stale broader patch, preserving News and all audiobook offers.
+
+## Verified Volume I paperback — 29 October 2026
+
+The separate KDP task verified Volume I paperback Live and its public Amazon
+listing In Stock at 13:30 UTC: `https://www.amazon.com/dp/B0HPPHPJVC`, by Eric
+Storm, ISBN 9798998414909, 302 pages. The Books page replaces the pending notice
+with **View paperback on Amazon**, with current availability, pricing and
+delivery left to Amazon. No transient discount or delivery date is hardcoded.
+The two Kindle links and Payhip audiobook offers remain unchanged. Volume II
+paperback remains Draft/proof only and retains its undated **Available soon**
+notice with no retail link. No KDP, pricing, Select or purchase action is part of
+this website release.

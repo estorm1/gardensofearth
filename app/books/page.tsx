@@ -10,7 +10,7 @@ import { audiobookOffers, audiobookPlaybackNote, kindleEditions, printEditions, 
 import styles from "./books.module.css";
 
 export const metadata = {
-  ...pageMetadata("Books | Gardens of Earth", "Explore Eric Storm’s Gardens of Earth: Volume I and II Kindle editions on Amazon, full M4B audiobooks at $7 USD each, plus the Chapter 9 preview.", "/books"),
+  ...pageMetadata("Books | Gardens of Earth", "Explore Eric Storm’s Gardens of Earth: Volume I paperback and both Kindle editions on Amazon, full M4B audiobooks at $7 USD each, plus the Chapter 9 preview.", "/books"),
   robots: { index: true, follow: true },
 };
 
@@ -80,8 +80,15 @@ export default function BooksPage() {
                   </div>
                   <div className={styles.printEdition}>
                     <h3>Paperback</h3>
-                    <p className={styles.printStatus}>{print.label}</p>
-                    {offer.id === "volume-i" ? <p className={styles.offerStatus}>A purchase link will be added when the Amazon listing is live.</p> : null}
+                    {print.amazonUrl ? (
+                      <>
+                        <a className={styles.purchaseButton} href={print.amazonUrl}
+                          aria-label={`View ${volume.name} paperback on Amazon`} aria-describedby={`${offer.id}-paperback-availability`}>
+                          View paperback on Amazon
+                        </a>
+                        <p id={`${offer.id}-paperback-availability`} className={styles.offerStatus}>See Amazon for current availability, pricing and delivery.</p>
+                      </>
+                    ) : <p className={styles.printStatus}>{print.label}</p>}
                   </div>
                 </div>
               </article>
